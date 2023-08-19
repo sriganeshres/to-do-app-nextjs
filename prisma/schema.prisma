@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,9 +11,9 @@ datasource db {
 }
 
 model Todo {
-  id        String   @id
+  id        String   @id @default(uuid())
   title     String
+  createdat DateTime @default(now())
   complete  Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedat DateTime @updatedAt
 }
