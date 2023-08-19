@@ -6,7 +6,6 @@ const getTodos = () => {
   return prisma.todo.findMany()
 }
 async function toggleTodo(id: string, complete: boolean) {
-  "use server"
   await prisma.todo.update({ where: { id }, data: { complete } })
 }
 
