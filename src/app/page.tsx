@@ -18,9 +18,14 @@ const page = async () => {
         <h1 className="text-2xl">
           TODOS
         </h1>
-        <Link href="/new" className="border rounded-lg p-2 m-4 text-slate-400 border-gray-400 focus-within:bg-slate-700 hover:bg-slate-700 shadow-lg outline-none" >
-          NEW
-        </Link>
+        <div className="w-[1/10] flex justify-between items-center">
+          <Link href="/new" className="border rounded-lg p-2 m-4 text-slate-400 border-gray-400 focus-within:bg-slate-700 hover:bg-slate-700 shadow-lg outline-none" >
+            NEW
+          </Link>
+          <Link href="/delete" className="border rounded-lg p-2 m-4 text-slate-400 border-gray-400 focus-within:bg-slate-700 hover:bg-slate-700 shadow-lg outline-none" >
+            DELETE
+          </Link>
+        </div>
       </header>
       <ul className="pl-4 text-xl font-sans">
         {todos.map(todo => (
