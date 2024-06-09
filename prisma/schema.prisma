@@ -7,13 +7,34 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:jlsqzAkFqUjR339Uyxrt@containers-us-west-113.railway.app:6236/railway"
+  url      = "postgresql://postgres:hHKPsfOJRctltRJTuKnBlOnDarBjMUvE@roundhouse.proxy.rlwy.net:19061/railway"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  todos     Todo[]   // One-to-many relationship with todos
 }
 
 model Todo {
   id        String   @id @default(uuid())
   title     String
-  createdat DateTime @default(now())
-  complete  Boolean
-  updatedat DateTime @updatedAt
+  createdAt DateTime @default(now())
+  complete  Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+  userId    String   // Foreign key to link to User
+  user      User     @relation(fields: [userId], references: [id])
+  typeId    String   // Foreign key to link to Type
+  type      Type     @relation(fields: [typeId], references: [id])
 }
+
+model Type {
+  id   String @id @default(uuid())
+  name String @unique
+  todos Todo[] // Relation to Todo model
+}
+
+
+
